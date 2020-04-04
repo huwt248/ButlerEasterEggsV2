@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>The Big Butler Virtual Easter Egg Hunt</title>
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -36,53 +37,32 @@
         margin-left: -100px;
       }
       #eggsRemain{
-          position: absolute;
-          display: block;
-          top: 20px;
-          width: 175px;
-          height: 50px;
-          font-size: 18px;
           left: calc((100%-175px)/3);
-          background-color: aliceblue;
-          z-index: 20;
-          font-family: 'Roboto','sans-serif';
-          border-radius: 5px;
-          padding-top: 4px;
-          font-weight: 400;
       }
         #yourEggCount{
+          left: calc((100%-175px)*(2/3));
+      }
+        .eggCounter{
           position: absolute;
           display: block;
           top: 20px;
           width: 175px;
           height: 50px;
           font-size: 18px;
-          left: calc((100%-175px)*(2/3));
           background-color: aliceblue;
           z-index: 20;
           font-family: 'Roboto','sans-serif';
           border-radius: 5px;
           padding-top: 4px;
           font-weight: 400;
-      }
+        }
         #eggFound {
-            display: none;
-            position: absolute;           
-            top: 15%;    
-            z-index: 10;
-            border-radius: 2%;
-            width: 600px;
-            height: 700px;
-            left: calc((100% - 700px)/2);
-            background-color: #fff8b4;
             background-image: url('EasterBackground.png');
-            padding: 5px;
-            text-align: center;
-            font-family: 'Roboto','sans-serif';
-            font-size: 30px;
-            line-height: 60px;
         }
         #specialEggFound {
+            background-image: url('specialEgg.png');
+        }
+        .eggPopup{
             display: none;
             position: absolute;           
             top: 15%;    
@@ -92,7 +72,6 @@
             height: 700px;
             left: calc((100% - 700px)/2);
             background-color: #fff8b4;
-            background-image: url('specialEgg.png');
             padding: 5px;
             text-align: center;
             font-family: 'Roboto','sans-serif';
@@ -109,45 +88,6 @@
             top: 10px;
             background-color: aliceblue;
             line-height: 45px;
-        }
-        #closeButton2 {
-            position: absolute;
-            width: 45px;
-            height: 45px;
-            font-size: 30px;
-            text-align: center;
-            left: 650px;
-            top: 10px;
-            background-color: aliceblue;
-            line-height: 45px;
-        }
-        #eggIDlist {
-            display: none;
-            position: absolute;           
-            top: 15%;    
-            z-index: 10;
-            border-radius: 2%;
-            width: 200px;
-            height: 800px;
-            left: 30px;
-            background-color: #fff8b4;
-            font-family: 'Roboto','sans-serif';
-            font-size: 12px;
-            line-height: 18px;
-        }
-        #emailList {
-            display: none;
-            position: absolute;           
-            top: 15%;    
-            z-index: 10;
-            border-radius: 2%;
-            width: 200px;
-            height: 800px;
-            left: 30px;
-            background-color: #fff8b4;
-            font-family: 'Roboto','sans-serif';
-            font-size: 12px;
-            line-height: 18px;
         }
         input{
             width: 400px;
@@ -169,9 +109,6 @@
             background-color: pink;
             cursor: pointer;
         }
-        #eggID{
-            display: none;
-        }
         #eggTitle{
             display: block;
             line-height: 20px;
@@ -182,10 +119,21 @@
             line-height: 18px;
         }
         #intro{
+            z-index: 10;
+            font-size: 8px;
+            padding-top: 100px;
+        }
+        #instructions{  
+            z-index: 15;
+            font-size: 14px;
+            padding-top: 70px;
+        }
+        .startPopup{
             display:block;
             position: absolute;           
-            top: 15%;    
-            z-index: 10;
+            top: 15%;
+            line-height: 30px;
+            padding: 30px;
             border-radius: 2%;
             width: 540px;
             height: 540px;
@@ -197,10 +145,6 @@
             background-size: 600px 700px;
             text-align: center;
             font-family: 'Roboto','sans-serif';
-            font-size: 8px;
-            line-height: 30px;
-            padding: 30px;
-            padding-top: 100px;
         }
         #introTitle{
             font-size: 30px;
@@ -221,66 +165,30 @@
         #emaillogging{
             font-size: 18px;
         }
-        #allEggsFound{
-            display:none;
-            position: absolute;           
-            top: 15%;    
-            z-index: 15;
-            border-radius: 2%;
-            width: 540px;
-            height: 340px;
-            left: calc((100% - 700px)/2);
-            background-color: #fff8b4;
-            background-image: url('EasterBackground.png');
-            background-origin: border-box;
-            background-repeat: no-repeat;
-            background-size: 600px 700px;
-            text-align: center;
-            font-family: 'Roboto','sans-serif';
-            font-size: 24px;
-            line-height: 30px;
-            padding: 30px;
-            padding-top: 300px;
-        }
-        #instructions{
-            display:block;
-            position: absolute;           
-            top: 15%;    
-            z-index: 15;
-            border-radius: 2%;
-            width: 540px;
-            height: 570px;
-            left: calc((100% - 700px)/2);
-            background-color: #fff8b4;
-            background-image: url('EasterBackground.png');
-            background-origin: border-box;
-            background-repeat: no-repeat;
-            background-size: 600px 700px;
-            text-align: center;
-            font-family: 'Roboto','sans-serif';
-            font-size: 14px;
-            line-height: 30px;
-            padding: 30px;
-            padding-top: 70px;
-        }
-        #countdown{
-            display:block;
-            position: absolute;           
-            top: 15%;    
+        .specialMessage{
             z-index: 1500;
-            border-radius: 2%;
+             display:none;
+             position: absolute;           
+             top: 15%;
+             border-radius: 2%;
             width: 900px;
             height: 700px;
             left: calc((100% - 900px)/2);
             color: white;
             background-color: #fff8b4;
-            background-image: url('countdownBg.png');
             background-size: 900px 700px;
             background-origin: border-box;
             background-repeat: no-repeat;
             font-family: 'Roboto','sans-serif';
             font-size: 20px;
             line-height: 30px;
+        }
+        #allEggsFound{   
+            background-image: url('allEggsFound.png');
+        }
+
+        #countdown{ 
+            background-image: url('countdownBg.png');
         }
         #countdown > div{
             padding: 12px;
@@ -315,10 +223,10 @@
     <div id="floating-panel">
       <input type="button" value="Toggle Street View" onclick="toggleStreetView();"></input>
     </div> 
-    <div id="eggsRemain"><b>Eggs Remaining:</b><br> <span id="eggCount"></span> </div>
-    <div id="yourEggCount"><b>Your Eggs:</b><br> <span id="yourEggs"></span> </div>
+    <div id="eggsRemain" class="eggCounter"><b>Eggs Remaining:</b><br> <span id="eggCount"></span> </div>
+    <div id="yourEggCount" class = "eggCounter"><b>Your Eggs:</b><br> <span id="yourEggs"></span> </div>
     <!-- Window pops up when clicking on egg !-->
-    <div id="eggFound">
+    <div id="eggFound" class="eggPopup">
         <span id="eggTitle">Congratulations! </span><span id="foundMessage">Please enter your information to record this egg</span>
         <form id="myForm" action="https://script.google.com/macros/s/AKfycbyGNf3lZFS39yq1bD4v4HiAXu1jZfYP8Z3OYTwKnrY3LoJQ_9JQ/exec">
         Egg ID:<br>
@@ -334,9 +242,9 @@
         </form>
     </div> 
     
-    <div id="allEggsFound"><span class="title">Congratulations!</span><p>All eggs have been found!</p></div>
+    <div id="allEggsFound" class = "specialMessage"></div>
     
-    <div id = "countdown">
+    <div id = "countdown" class = "specialMessage">
   <div>
     <span id="days"></span>
     <div class="smalltext">Days</div>
@@ -355,10 +263,9 @@
   </div>
     </div>
 
+    <div id="instructions" class="startPopup"><span class="title">Instructions</span><div id="closeButton" onclick="closeWindow()" style = "cursor:pointer">X</div><p>Using the arrow keys or by clicking on the screen, move around Durham to look for eggs. You can move the camera about by clicking and dragging</p><p>Eggs are not visible until you are close to them, and will only appear as you drag the screen to look around!</p><p>When you see an egg, click on it! A form will appear, which should already have your name and username filled in. Click submit to capture this egg. It will then disappear from the game for all players, so no one else will be able to find it!</p><p>At the top of the screen you will see how many eggs remain in the game for players to find, and also how many eggs you have found yourself.<p>If streetview gets stuck, press refresh to go back to the starting point, don't worry though, you won't lose the eggs you have already found if you re-enter the same username!</p></p></div>
     
-    <div id="instructions"><span class="title">Instructions</span><div id="closeButton" onclick="closeWindow()" style = "cursor:pointer">X</div><p>Using the arrow keys or by clicking on the screen, move around Durham to look for eggs. You can move the camera about by clicking and dragging</p><p>Eggs are not visible until you are close to them, and will only appear as you drag the screen to look around!</p><p>When you see an egg, click on it! A form will appear, which should already have your name and username filled in. Click submit to capture this egg. It will then disappear from the game for all players, so no one else will be able to find it!</p><p>At the top of the screen you will see how many eggs remain in the game for players to find, and also how many eggs you have found yourself.<p>If streetview gets stuck, press refresh to go back to the starting point, don't worry though, you won't lose the eggs you have already found if you re-enter the same username!</p></p></div>
-    
-    <div id="intro">
+    <div id="intro" class="startPopup">
         <span id="introTitle">Welcome to The Big Butler Virtual Easter Egg Hunt <p id="foundMessage">Please enter your name and Durham CIS Username (i.e. abcd12) to get started</p><p id="introMessage">This is used to record the eggs you find, recover your progress if you leave the site, and enable us to contact you if you win a prize!</span>
         
         <form id="emaillogging">
@@ -393,8 +300,6 @@
       var entry;
       
         
-        
-        
   function initMap() {
 
         var crossroads = {lat:54.768742, lng:-1.574184};
@@ -409,7 +314,6 @@
             url: 'eggIcon.png', // egg image
             scaledSize: new google.maps.Size(30, 30), // scaled size
         };
-
 
             /* ---------------------------------------------------------------------------
             ------------------------------------------------------------------------------
@@ -842,6 +746,7 @@
           
           
       } else {
+          document.getElementById("countdown").style.display = 'block';
           panorama.setOptions({
                 enableCloseButton:false, //remove option of going to map view
                 fullscreenControl: false,
